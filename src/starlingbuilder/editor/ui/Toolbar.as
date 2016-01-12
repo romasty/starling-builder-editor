@@ -14,6 +14,7 @@ package starlingbuilder.editor.ui
     import starlingbuilder.editor.helper.NativeDragAndDropHelper;
     import starlingbuilder.editor.serialize.LoadExternalDocumentMediator;
     import starlingbuilder.editor.serialize.UIEditorDocumentMediator;
+    import starlingbuilder.engine.util.ag.SkinAsExportMediator;
     import starlingbuilder.util.feathers.FeathersUIUtil;
     import starlingbuilder.util.feathers.popup.InfoPopup;
     import starlingbuilder.util.history.HistoryManager;
@@ -195,7 +196,8 @@ package starlingbuilder.editor.ui
                 {label:"save", triggered:onButtonClick},
                 {label:"save as", triggered:onButtonClick},
                 {label:"external", triggered:onButtonClick},
-                {label:"test", triggered:onButtonClick}
+                {label:"test", triggered:onButtonClick},
+                {label:"gen", triggered:onButtonClick},
             ]
         }
 
@@ -222,6 +224,9 @@ package starlingbuilder.editor.ui
                     break;
                 case "test":
                     startTest();
+                    break;
+                case "gen":
+                    generateSkinClass();
                     break;
                 default:
                     trace("Not implemented");
@@ -252,6 +257,15 @@ package starlingbuilder.editor.ui
         private function openExternal():void
         {
             _loadExternalSerializer.open();
+        }
+
+        private function generateSkinClass() : void
+        {
+            /*_classGenSerializer.markDirty(true);
+            _classGenSerializer.customAction("generate");
+            _classGenSerializer.saveAs();*/
+
+            UIEditorApp.instance.documentManager.generate();
         }
 
         private function onEnterFrame(event:starling.events.Event):void

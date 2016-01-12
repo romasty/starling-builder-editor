@@ -32,6 +32,7 @@ package starlingbuilder.editor.controller
     import starlingbuilder.engine.IUIBuilder;
     import starlingbuilder.engine.UIBuilder;
     import starlingbuilder.engine.util.ParamUtil;
+    import starlingbuilder.engine.util.ag.SkinASClassExporter;
     import starlingbuilder.util.feathers.popup.InfoPopup;
     import starlingbuilder.util.history.HistoryManager;
     import starlingbuilder.util.history.IHistoryOperation;
@@ -674,6 +675,12 @@ package starlingbuilder.editor.controller
         public function export():Object
         {
             return _uiBuilder.save(_layoutContainer, _extraParamsDict, exportSetting());
+        }
+
+        public function generate() : void
+        {
+            var exporter : SkinASClassExporter = new SkinASClassExporter(_uiBuilder);
+            exporter.export(_layoutContainer, _extraParamsDict);
         }
 
         private function exportSetting():Object
