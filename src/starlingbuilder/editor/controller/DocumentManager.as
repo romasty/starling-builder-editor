@@ -677,12 +677,6 @@ package starlingbuilder.editor.controller
             return _uiBuilder.save(_layoutContainer, _extraParamsDict, exportSetting());
         }
 
-        public function generate() : void
-        {
-            var exporter : SkinASClassExporter = new SkinASClassExporter(_uiBuilder);
-            exporter.export(_layoutContainer, _extraParamsDict);
-        }
-
         private function exportSetting():Object
         {
             var setting:Object = {};
@@ -1173,6 +1167,11 @@ package starlingbuilder.editor.controller
             setChanged();
         }
 
-
+        //patch
+        public function generate() : void
+        {
+            var exporter : SkinASClassExporter = new SkinASClassExporter(_uiBuilder, _assetMediator);
+            exporter.export(_layoutContainer, _extraParamsDict);
+        }
     }
 }
